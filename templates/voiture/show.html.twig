@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+<div class="container">
+<div class="row">
+<div class="col-md-12">
+<h1>Voiture Details</h1>
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title">{{ voiture.modele }}</h5>
+    <p class="card-text">immatriculation: {{ voiture.immatriculation }}</p>
+    <p class="card-text">energie: {{ voiture.energie }}</p>
+    <p class="card-text">couleur: {{ voiture.couleur }}</p>
+    <p class="card-text">datepremiereimmatriculation: {{ voiture.datepremiereimmatriculation }}</p>
+    
+
+
+  </div>
+</div>
+
+{% endblock %}

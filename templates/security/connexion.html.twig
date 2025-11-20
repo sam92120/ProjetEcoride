@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}connexion{% endblock %}
+
+{% block body %}
+
+ {% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show mt-3">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+        </div>
+    {% endfor %}
+{% endfor %}
+<h1 class="text-center"><strong>Connexion</strong></h1>
+<div class="container   justify-content-center  align-items-center d-flex  bg-light " >    
+
+
+<div class="col-md-12  p-4 my-5 ">
+<form method="post">
+    {% if error %}
+        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% endif %}
+
+    <h1 class="h3 mb-3 font-weight-normal">Veuillez-vous Connectez</h1>
+    <strong><label for="inputEmail ">Email</label></strong>
+    <input  type="email" value="{{ last_username }}" name="Email" id="inputEmail" class="form-control form-control-sm  " autocomplete="email" required autofocus>
+    <strong><label for="inputPassword">Mot de passe</label></strong> 
+    <input type="password" name="password" id="inputPassword" class="form-control form-control-sm " autocomplete="current-password" required>
+    <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+    <button class="btn btn-sm btn-primary" type="submit ">
+        <strong>Connectez-vous</strong>
+    </button>
+    <p class=" text-content-justify-center"><a href="{{ path('app_register') }}">Inscrivez-vous</a></p>
+    <p class=" text-content-justify-center d-flex">Mot de passe oublié ? <a href="{{ path('app_forgot_password_request') }}">Réinitialiser</a></p>
+</form>
+</div>
+    </div>
+
+</div>
+   
+  
+    
+{% endblock %}

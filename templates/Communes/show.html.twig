@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la commune{% endblock %}
+
+{% block body %}
+    <h1>{{ commune.nom }}</h1>
+
+    <p>Population : {{ commune.population | number_format }}</p>
+
+{% endblock %}

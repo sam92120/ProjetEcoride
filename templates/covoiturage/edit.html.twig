@@ -1,0 +1,20 @@
+{# templates/covoiturage/edit.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un covoiturage{% endblock %}
+
+{% block body %}
+    <h1>Modifier un covoiturage</h1>
+
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+   
+
+    
+        <button class="btn btn-primary">Enregistrer</button>
+    {{ form_end(form) }}
+
+    <p>
+        <a href="{{ path('app_mon_compte_covoiturage') }}">Retour à mes covoiturages</a>
+    </p>
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Covoiturage{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Covoiturage</h1>
+    <p class="text-center">Bienvenue dans la section Covoiturage de votre compte.</p>
+
+    {% if covoiturages is empty %}
+        <div class="alert alert-info text-center">Aucun covoiturage trouvé.</div>
+    {% else %}
+        <div class="row">
+            {% for covoiturage in covoiturages %}
+                <div class="col-12 mb-3">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+
+                            <div class="d-flex align-items-center mb-2">
+                                <img src="{{ asset('uploads/photos/' ~ covoiturage.user.photo) }}" alt="photo de {{ covoiturage.user.pseudo }}" width="60" height="60" class="rounded-circle me-3">
+                                <strong>{{ covoiturage.user.pseudo ?? 'non renseigné' }}</strong>
+                            </div>
+
+                            <p class="card-text">
+                                {% if covoiturage.nbplace > 0 %}
+                                    <i class="bi bi-person"></i> {{ covoiturage.nbplace }} 
+                                    place{% if covoiturage.nbplace > 1 %}s{% endif %} restante{% if covoiturage.nbplace > 1 %}s{% endif %}
+                                {% else %}
+                                    <span class="text-danger fw-bold"><i class="bi bi-x-circle"></i> Complet</span>
+                                {% endif %}
+                            </p>
+
+                            <p class="card-title">
+                                <strong>{{ covoiturage.lieudepart }} → {{ covoiturage.lieuarrivee }}</strong>
+                                {% if covoiturage.voiture and covoiturage.voiture.type == 'Electrique' %}
+                                    <span class="badge bg-success">🌱 Écologique</span>
+                                {% endif %}
+                            </p>
+
+                            <p class="card-subtitle mb-2 text-muted">
+                                Départ le <strong>{{ covoiturage.dateDepart|date('d/m/Y') }}</strong>
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Prix par personne :</strong> {{ covoiturage.prixpersonne }} €
+                            </p>
+
+                            {# Bouton Détails #}
+                            <button class="btn btn-info btn-sm" data-bs-toggle="collapse" data-bs-target="#details-{{ covoiturage.id }}" aria-expanded="false" aria-controls="details-{{ covoiturage.id }}">
+                                Détails
+                            </button>
+
+                            {# Détails masqués #}
+                            <div class="collapse mt-2" id="details-{{ covoiturage.id }}">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <strong>Véhicule :</strong>
+                                        {{ covoiturage.voiture?.marque ?? 'Non précisée' }} {{ covoiturage.voiture?.modele ?? '' }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Type :</strong>
+                                        {{ covoiturage.voiture?.type ?? 'Non précisé' }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Heure de départ :</strong> {{ covoiturage.dateDepart|date('H:i') }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Statut :</strong> {{ covoiturage.statut }}
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>Description :</strong> {{ covoiturage.description ?? 'Aucune description' }}
+                                    </li>
+                                </ul>
+                            </div>
+
+                            {# Réservation possible #}
+                            {% if covoiturage.nbplace >= 3 and app.user %}
+                                <form action="{{ path('app_covoiturage_reserver', {'id': covoiturage.id}) }}" method="post" class="d-inline mt-2">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('covoiturage_reserver' ~ covoiturage.id) }}">
+                                    <button class="btn btn-primary btn-sm">Réserver</button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

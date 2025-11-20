@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Espace Utilisateurs{% endblock %}
+{% block body %}
+<div class="container-fluid mt-5 mb-5"> 
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Espace Utilisateurs</h1>
+    <div class="row justify-content-center shadow p-3 mb-5 shadow">
+    <a href="{{ path('app_mon_compte_informationpersonnel') }}" class="btn btn-secondary mb-4 ">Information Personnel</a>
+        <a href="{{ path('app_covoiturage') }}" class="btn btn-secondary mb-3"> les covoiturages disponibles</a>
+        <a href="{{ path('app_marque_new') }}" class="btn btn-secondary mb-3 ">Ajouter un covoiturage</a>
+    <a href="{{ path('app_mes_reservations') }}" class="btn btn-secondary mb-3">Mes réservations</a>
+        <a href="{{ path('app_voiture') }}" class="btn btn-secondary mb-3 form-control">Ma Voiture</a>
+            <a href="{{ path('app_covoiturage_historique') }}" class="btn btn-secondary mb-4 ">Historique covoiturage</a>
+
+    <a href="{{ path('app_register_delete') }}" class="btn btn-danger mb-3  form-control">Supprimer mon compte</a> </div>
+      <a href="{{ path('app_accueil') }}" class="btn btn-primary">Retour à l'accueil</a>
+
+
+    </div>
+  </div>
+{% endblock %}

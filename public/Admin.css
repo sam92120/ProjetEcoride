@@ -1,0 +1,24 @@
+/* Fond général du dashboard */
+.page-content {
+    background-color: #f0f8ff; /* bleu clair, change à ta couleur */
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #2c3e50; /* bleu foncé, change à ta couleur */
+}
+
+/* Liens du menu */
+.sidebar .menu-link {
+    color: #ffffff; /* blanc */
+}
+
+/* Boutons principaux */
+.btn-primary {
+    background-color: #2980b9;
+    border-color: #2980b9;
+}
+.btn-primary:hover {
+    background-color: #3498db;
+    border-color: #3498db;
+}

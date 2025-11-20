@@ -1,0 +1,66 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block content_title %}
+    📊 Tableau de bord administrateur
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+
+    <h2 class="mb-4">Bienvenue sur le tableau de bord administrateur</h2>
+
+    <p class="text-muted">
+        Voici un aperçu général des données de la plateforme.  
+        Utilisez le menu à gauche pour gérer les utilisateurs, trajets, avis et paramètres.
+    </p>
+
+    <!-- ------------------------------ -->
+    <!-- 📌 CARTES DE STATISTIQUES -->
+    <!-- ------------------------------ -->
+    <div class="row mt-4">
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 text-center">
+                <h4>👤 Utilisateurs</h4>
+                <p class="display-6 fw-bold">{{ users_count }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 text-center">
+                <h4>🚗 Trajets</h4>
+                <p class="display-6 fw-bold">{{ trajets_count }}</p>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3 text-center">
+                <h4>⭐ Avis publiés</h4>
+                <p class="display-6 fw-bold">{{ avis_count }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ------------------------------ -->
+    <!-- 📈 CHART 1 : Trajets par mois -->
+    <!-- ------------------------------ -->
+    <div class="card mt-5 shadow-sm p-4">
+        <h4 class="mb-3">📅 Trajets publiés par mois</h4>
+        {{ render_chart(chartMonthly) }}
+    </div>
+
+    <!-- ------------------------------ -->
+    <!-- 🧭 CHART 2 : Répartition des statuts -->
+    <!-- ------------------------------ -->
+    <div class="card mt-5 mb-5 shadow-sm p-4">
+        <h4 class="mb-3">🚦 Répartition des statuts des trajets</h4>
+        {{ render_chart(chartStatus) }}
+    </div>
+
+</div>
+{% endblock %}

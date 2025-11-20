@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+{% block body %}
+    <div class="container-fluid  d-flex justify-content-center  " >
+    <div class="row-1  justify-content-center shadow-lg p-4 mg-5 mt-5 bg-light rounded" style="width: 40rem;">
+    <h1 style="color:green">Inscrivez-vous</h1>
+    <div class="col-1 d-flex fs-2 p-3" >
+        {{ form_errors(registrationForm) }}
+        {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.nom, {label: 'Nom',  label_attr: {'style': 'color: dark;'}}) }}
+        {{ form_row(registrationForm.Prenom, {label: 'Prénom',  label_attr: {'style': 'color: dark;'}}) }}
+        {{ form_row(registrationForm.Email ,{label:'email',  label_attr: {'style': 'color: dark;'}}) }}
+        {{ form_row(registrationForm.pseudo, {label: 'Pseudo',  label_attr: {'style': 'color: dark;'}}) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'mot de passe',  label_attr: {'style': 'color: dark;'}
+        }) }}
+        {{ form_row(registrationForm.agreeTerms ,{ label: "J'accepte les conditions d'utilisation", label_attr:{'style':'color:dark'}}) }}      
+
+        <button type="submit" class="btn btn-success control">Inscrit</button>
+    {{ form_end(registrationForm) }}
+    </div>
+    </div>
+    </div>
+{% endblock %}

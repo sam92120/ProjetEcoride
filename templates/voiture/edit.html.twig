@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+<div class="container mt-4 mb-4 text-center p-4 rounded  ">
+  <h1 class="mt-4 text">modifier la voiture</h1>
+{{ form_start(form) }}
+    {{ form_widget(form) }}
+    <button class="btn btn-success">Enregistrer</button>
+{{ form_end(form) }}
+
+<div class="container mt-4 mb-4 text-center  rounded">
+    <a href="{{ path('app_voiture') }}" class="btn btn-secondary">Retour à la liste des voitures</a>
+</div>
+
+</div>
+
+
+
+{% endblock %}
+

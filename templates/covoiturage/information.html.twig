@@ -1,0 +1,69 @@
+{# templates/covoiturage/InfoCov.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du Covoiturage{% endblock %}
+
+{% block body %}
+<div class="container-fluid mt-5 p-4 bg-light rounded shadow-fluid">
+    <h1 class="mb-4">Détails du Covoiturage</h1>
+
+    <div class="card shadow-fluid">
+        <div class="card-body">
+            <h5 class="card-title">Trajet: {{ covoiturage.lieudepart }} → {{ covoiturage.lieuarrivee }}</h5>
+            <p class="card-text"><strong>Date et Heure:</strong> {{ covoiturage.dateDepart|date('d/m/Y H:i') }}</p>
+            <p class="card-text"><strong>Prix:</strong> {{ covoiturage.prixpersonne }} €</p>
+            <hr>
+
+
+            <h5 class="text-primary">Informations sur le Conducteur</h5>
+            {% if covoiturage.user and covoiturage.user.photo %}
+                <img src="{{ asset('uploads/photos/' ~ covoiturage.user.photo) }}"
+                     alt="photo de {{ covoiturage.user.pseudo }}"
+                     width="100" height="100" class="rounded-circle mb-2">
+            {% endif %}
+            <p><strong>Pseudo:</strong> {{ covoiturage.user.pseudo }}</p>
+            <p><strong>Nom:</strong> {{ covoiturage.user.nom ?? 'non renseigné' }}</p>
+            <p><strong>Prénom:</strong> {{ covoiturage.user.prenom ?? 'non renseigné' }}</p>
+            <hr>
+            {#préférences du conducteur fumeur/non-fumeur, animaux acceptés ou non#}
+            <h5 class="text-primary">Évaluation du Conducteur</h5>
+            <p><strong>Note Moyenne:</strong> {{ avis.note }} étoiles</p>
+            <p><strong>Commentaires:</strong> {{ avis.commentaire ?? 'Aucun commentaire disponible.' }}</p>
+
+        <h5>Préférences du Conducteur</h5>
+        <p><strong>Fumeur:</strong> {{ covoiturage.AccepteFumeur ? 'Oui' : 'Non' }}</p>
+        <p><strong>Animaux Acceptés:</strong> {{ covoiturage.AccepteAnimaux ? 'Oui' : 'Non' }}</p>
+
+            <hr>
+            <h5 class="text-primary">Informations sur la Voiture</h5>
+            <p><strong>Marque:</strong> {{ voiture.marque ?? 'non renseigné ' }}</p>
+            <p><strong>Modèle:</strong> {{ voiture.modele ?? 'non renseigné' }}</p>
+            <p><strong>Couleur:</strong> {{ voiture.couleur ?? 'non renseigné' }}</p>
+            <p><strong>Nombre de places:</strong> {{ voiture.nbPlaces ?? 'non renseigné' }}</p>
+            {% if app.user %}
+            <p><strong>Immatriculation:</strong> {{ voiture.immatriculation ?? 'non renseigné' }}</p>
+            <p><strong>Date de mise en circulation:</strong> {{ voiture.datepremiereimmatriculation ? voiture.datepremiereimmatriculation|date('d/m/Y') : 'non renseigné' }}</p>
+            {% endif %}
+            <p><strong>Énergie:</strong> {{ voiture.energie ?? 'non renseigné' }}</p>
+            {% if voiture.energie in ['electrique', 'hybride'] %}
+                <p>Voyage écologique 🌱 🌱 🌱</p>
+            {% else %}
+                <p>Voyage non écologique</p>
+            {% endif %}
+
+
+        </div>
+        {% if covoiturage.user.credit < 0 %}
+        <div class="alert alert-warning text-center">
+            <strong>Attention :</strong> Ton credit est insuffisant pour réserver ce covoiturage veuillez recharger votre compte.
+            {% else %}
+            <a href="{{ path('app_covoiturage_reserver', {'id': covoiturage.id}) }}" class="btn btn-success mt-4">Réserver ce covoiturage</a>
+            {% endif %}
+        </div>
+
+    <div>     
+        <strong class="d-block mt-3"><a href="{{ path('app_covoiturage') }}">Retour à la liste des covoiturages</a></strong>
+    </div>
+
+</div>
+{% endblock %}

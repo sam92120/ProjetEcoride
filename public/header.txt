@@ -1,0 +1,60 @@
+<header>
+	   <header>
+        <nav class="navbar navbar-expand-lg bg-primary p-3 ">
+            <div class="container-fluid">
+              <a class="navbar-brand primary" href="#">ECORIDE</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 ">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Covoiturage</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Connexion/Deconnexion</a>
+                  </li>
+				
+                  <li class="nav-item">
+                    <a class="nav-link" href="#"> Contact</a>
+                  </li>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+	</header>
+
+	<main>	
+	<div class="container-fluid ">
+	<div class="  form-container position-absolute bottom-50 end-50 ">
+            <form>
+                <div class="row mb-3 ">
+                    <div class="col ">
+                        <label for="depart" class="form-label"></label>
+                        <input type="text" class="form-control" id="depart" placeholder="Départ">
+                    </div>
+                    <div class="col">
+                        <label for="arrive" class="form-label"></label>
+                        <input type="text" class="form-control" id="arrive" placeholder="Arrivé">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary text-center">recherche</button>
+            </form>
+        </div>
+    </div>
+        
+
+	</div>
+
+  <footer>
+  <div class="container-fluid">
+      <div class="row">
+       <di class="col-4"> Ecoride@outlook.com</di>
+        <div class="col-4"> mentions légales<a href="#"> </di>
+       <di class="col-4"></di>
+      </div>
+  </div>
+  </footer>
+	</main>
+	

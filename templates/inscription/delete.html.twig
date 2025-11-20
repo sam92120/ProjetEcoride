@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer mon compte{% endblock %}
+
+{% block body %}
+    <div class="container mt-5 mb-5">
+        <h1 class="text-center">Supprimer mon compte</h1>
+        <div class="row mb-4 justify-content-center">
+            <div class="col-md-12 mb-4">
+                <div class="card">
+                    <div class="card-body">
+                        <p>Êtes-vous sûr de vouloir supprimer votre compte ? Cette action est irréversible.</p>
+                        <form method="post" action="{{ path('app_register_delete') }}">
+                            <input type="hidden" name="_token" value="{{ csrf_token('delete_user') }}">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Êtes-vous sûr ? Cette action est définitive.');">
+                                Supprimer mon compte
+                            </button>
+                        </form>
+                        <p class="mt-4 text-muted">Si vous changez d'avis, vous pouvez toujours créer un nouveau compte.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

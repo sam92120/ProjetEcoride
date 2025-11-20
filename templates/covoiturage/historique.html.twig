@@ -1,0 +1,49 @@
+{# templates/covoiturage/historique.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Historique des covoiturages{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Historique de vos covoiturages</h1>
+
+    {% if historique is empty %}
+        <p>Aucun covoiturage terminé trouvé.</p>
+    {% else %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Départ</th>
+                    <th>Arrivée</th>
+                    <th>Date</th>
+                    <th>Conducteur</th>
+                    <th>Passagers</th>
+                    <th>Statut</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for covoiturage in historique %}
+                <tr>
+                    <td>{{ covoiturage.lieudepart }}</td>
+                    <td>{{ covoiturage.lieuarrivee }}</td>
+                    <td>{{ covoiturage.dateDepart ? covoiturage.dateDepart|date('d/m/Y H:i') : '' }}</td>
+                    <td>{{ covoiturage.user.nom }} {{ covoiturage.user.prenom }}</td>
+                    <td>
+                        
+                            {% for passager in covoiturage.passagers %}
+                                {{ passager.nom }} {{ passager.prenom }}<br>
+                            {% endfor %}
+                    </td>
+                    <td>{{ covoiturage.statut }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    <a href="{{ path('app_covoiturage') }}" class="btn btn-outline-success mb-4">
+        &larr; Retour aux covoiturages
+    </a>
+</div>
+{% endblock %}

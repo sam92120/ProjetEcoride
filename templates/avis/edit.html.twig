@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier un avis{% endblock %}
+
+{% block body %} 
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Modifier l'avis</h1>
+
+    <div class="row justify-content-center">
+        <div class="col-md-12">
+            {{ form_start(form) }}
+            {{ form_row(form.commentaire, {label: 'Commentaire', label_attr: {'style': 'color: white;'}}) }}
+            {{ form_row(form.note, {label: 'Note', label_attr: {'style': 'color: white;'}}) }}
+            {{ form_row(form.statut, {label: 'Statut', label_attr: {'style': 'color: white;'}}) }}
+            <button type="submit" class="btn btn-success">envoyer</button>
+            {{ form_end(form) }}
+            <a href="{{ path('app_avis') }}" class="btn btn-light mt-3">Retour à la liste des avis</a>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

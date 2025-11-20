@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %}Information{% endblock %}
+{% block body %}
+<a href="{{ path('app_mon_compte_edit') }}" class="btn btn-primary mb-4">  ◀️ </a>
+<div class="container text-center ">
+    <h1>Information</h1>
+    <p>veuillez trouver ci-dessous les informations de votre compte.</p>
+<div class="row">
+    <div class="col-md-12 text-center">
+       <p>telephone:0123456789</p>
+       <p>email:Ecorideoutlook.com</p>
+       <p>adresse: 123 rue de l'Ecoride, 75000 Paris</p>
+       <p>horaires d'ouverture: Lundi - Vendredi, 9h - 18h</p>
+       <p>contact personnel:0612345678</p>
+    </div>    
+</div>
+{% endblock %} 

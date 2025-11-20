@@ -1,0 +1,13 @@
+{% extends 'base.html.twig'  %}
+{% block title %}Supprimer un avis{% endblock %}
+
+{% block body %}
+<h1>Supprimer un avis</h1>
+ {% for avis in avis %}
+    <form action="{{ path('app_avis_delete', { id: avis.id }) }}" method="post">
+        <button type="submit">Supprimer</button>
+    </form>
+{% endfor %}
+   {#} <a href="{{ path('app_avis') }}" class="btn btn-secondary">Annuler</a>#}
+
+{% endblock %}

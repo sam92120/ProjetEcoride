@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voiture{% endblock %}
+
+{% block body %}
+<div class="container-fluid py-4 bg-success">
+    <h1 class="text-center">Liste des Voitures</h1>
+<div class="row mb-4 justify-content-center">
+<div class="col-md-12 mb-4">
+
+<div class="card">
+    <div class="card-body">
+
+    {% for voiture in voitures %}
+        <strong class="card-title">Marque: {{ voiture.marque.libelle }}</strong><br>
+        <strong class="card-text">Modèle: {{ voiture.modele }}</strong><br>
+        <strong class="card-title">Propriétaire: {{ voiture.proprietaire.nom }} {{ voiture.proprietaire.prenom }}</strong><br>
+        <strong class="card-text">Immatriculation: {{ voiture.immatriculation }}</strong><br>
+        <strong class="card-text">Energie: {{ voiture.energie }}</strong><br>
+        <strong class="card-text">Couleur: {{ voiture.couleur }}</strong><br>
+        <strong class="card-text">Date de première immatriculation: {{ voiture.datepremiereimmatriculation|date('Y-m-d') }}</strong><br>
+        <a href="{{ path('app_voiture_edit', {'id': voiture.id}) }}" class="btn btn-primary">Modifier</a>
+        <a href="{{ path('app_voiture_delete', {'id': voiture.id}) }}" class="btn btn-danger">Supprimer</a>
+        
+
+    {% endfor %}
+    </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

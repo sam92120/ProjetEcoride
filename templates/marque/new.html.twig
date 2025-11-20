@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une nouvelle Marque{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-5">
+
+    <h1>Créer une nouvelle Marque</h1>
+    <div class="row mb-4 justify-content-center">
+        <div class="col-md-12 mb-4">
+            <div class="card">
+                <div class="card-body">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    <p class="info">Si ta voiture est déjà enregistrée, vous pouvez ignorer cette étape.</p>
+
+                    <button class="btn btn-primary">ajouter</button>
+                    <button class="btn btn-primary">ignorer</button>
+                    {{ form_end(form) }}
+                
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

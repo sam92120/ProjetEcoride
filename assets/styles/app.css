@@ -1,3 +1,111 @@
+html,
 body {
-    background-color: skyblue;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: url("/PageAccueil.png") no-repeat center fixed;
+    background-size: cover; /* Remplacez "auto" par "cover" pour éviter le débordement */
+}
+
+.rech {
+    border: 2px solid black;
+    border-radius: 10px;
+    background: whitesmoke;
+    padding: 20px; /* Réduisez le padding */
+    margin: 10px auto; /* Centrez et réduisez la marge */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 90%; /* Limitez la largeur maximale */
+}
+
+.success {
+    background-color: rgb(36, 192, 81);
+    text-align: center;
+    opacity: inherit;
+}
+
+.btn1 {
+    border-radius: 10px;
+    /* Arrondit les coins de 10 pixels */
+    width: 200%;
+    height: 200%;
+    background: rgb(36, 192, 81);
+    transition: all 0.4s ease;
+}
+
+.contenu {
+    background-image: url("/voitureE.png");
+    width: 100%; /* ou une valeur fixe en px */
+    max-width: 200px; /* Limitez la largeur maximale */
+    height: auto; /* Laissez la hauteur s’ajuster automatiquement */
+}
+
+.itine {
+    text-align: justify;
+    text-align: center;
+    font-family: Arial;
+    padding: 12px;
+    margin: 12px;
+}
+
+html,
+.rounded-circle {
+    object-fit: cover;
+}
+
+.personaliser {
+    background-color: rgb(36, 192, 81);
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Assurez-vous que main prend toute la largeur */
+    padding: 1rem; /* Ajoutez un padding pour éviter que le contenu ne touche les bords */
+}
+
+.credit {
+    font-size: 1.5rem;
+    color: white;
+    font-weight: bold;
+    font-family: "Courier New", Courier, monospace;
+    border-radius: 5px;
+    padding: 0.5rem;
+    text-align: center;
+    margin: 1rem auto; /* Centrez l’élément */
+    width: fit-content; /* Ajustez la largeur au contenu */
+    background-color: rgba(36, 192, 81, 0.8);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+/* Ajoutez ceci à votre CSS */
+.image1 img,
+.image2 img,
+.image3 img,
+.image4 img,
+.image5 img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    max-height: 400px; /* Ajustez selon vos besoins */
+}
+
+footer {
+    margin-top: auto;
+    margin: 0;
+    padding: 1rem 0;
+    background-color: #343a40; /* ou votre couleur de fond */
+    color: white;
+    text-align: center;
 }

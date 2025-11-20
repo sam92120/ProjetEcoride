@@ -1,0 +1,157 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+
+	<div
+		class="container-fluid px-0 text-center">
+
+		<div
+			class="row gx-0 text-center">
+			<div
+				class="col-md-12">
+				{#{% if app.user %}
+					<strong
+						class="position-absolute p-0 end-0 m-3 fs-5 fw-bold bg-success text-white px-4 py-4 p-0 rounded shadow">
+						Vos crédits :
+						{{ app.user.credit }}
+						{{ app.user.credit > 0 ? 'Jetons' : 'Jeton' }}
+					</strong>
+				{% endif %}#}
+			</div>
+		</div>
+
+
+		<div
+			class="col-md-12 text-center bg-light py-5">
+
+
+			<h1
+				class="display-4">Bienvenue sur Ecoride</h1>
+			<p
+				class="lead ">
+				<strong>Votre application de covoiturage éco-responsable</strong>
+			</p>
+
+			<div
+				class="rech container success p-5">
+				<form
+					class="row g-2"
+					role="search"
+					method="GET"
+					action="{{ path('app_accueil_search') }}">
+					<div
+						class="col-12 col-md-3">
+						<input
+							class="form-control"
+							name="depart"
+							type="search"
+							placeholder="⭕ Lieu de Départ"
+							aria-label="Search "
+							required>
+					</div>
+					<div
+						class="col-12 col-md-3">
+						<input
+							class="form-control"
+							name="arrivee"
+							type="search"
+							placeholder="⭕ Lieu d'Arrivée"
+							aria-label="Search "
+							required>
+					</div>
+					<div
+						class="col-12 col-md-2">
+						<input
+							class="form-control"
+							name="date_depart"
+							type="date"
+							aria-label="Date"
+							placeholder="Date de Départ"
+							required>
+					</div>
+
+					<div
+						class="col-12 col-md-2 d-grid">
+						<button
+							class="btn btn-primary"
+							type="submit "
+							required>recherche</button>
+					</div>
+				</form>
+
+			</div>
+
+			<div
+				class="container-fluid px-0">
+				<!-- Première ligne -->
+				<div
+					class="row g-0">
+					<div
+						class="col-md image1">
+						<img
+							src="/voitureeco1.jpg"
+							class="img-fluid w-100"
+							alt="">
+					</div>
+
+					<div
+						class="col-md image2 d-flex align-items-center p-4  bg-white fs-5">
+						<p>
+							Bienvenue sur Ecoride, l'application qui vous permet de réserver
+							        votre voiture en toute sécurité.
+							<br><br>
+							Chez Ecoride, nous privilégions les voitures électriques
+							        et hybrides pour nos voyages, car nous nous soucions énormément de l'environnement.<br><br>
+							Avec Ecoride, vous pouvez réserver votre voiture quand vous voulez : il vous suffit de taper dans la barre de recherche,
+							        votre destination et bien sûr la date.
+							<br><br>
+							Alors n'attendez plus, rejoignez-nous dès aujourd'hui et profitez d'un voyage
+							        confortable et respectueux de l'environnement !
+
+
+						</p>
+					</div>
+
+					<div
+						class="col-md image3">
+						<img
+							src="/voiture3.jpg"
+							class="img-fluid "
+							alt="...">
+					</div>
+				</div>
+
+				<!-- Deuxième ligne : image seule -->
+				<div
+					class="row g-0">
+					<div
+						class="col-12 image4">
+						<img
+							src="/voitureE.png"
+							class="img-fluid "
+							alt="...">
+					</div>
+				</div>
+
+				<!-- Troisième ligne : image seule -->
+				<div
+					class="row g-0 d-flex justify-content-center">
+					<div
+						class="col-12 image5">
+						<img
+							src="/voitureCovoi.png"
+							class="img-fluid"
+							alt="...">
+							
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+
+	{% endblock %}

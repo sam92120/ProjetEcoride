@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Supprimer un Covoiturage{% endblock %}
+
+{% block body %}
+    <h1>Supprimer un Covoiturage</h1>
+
+    <p>Êtes-vous sûr de vouloir supprimer ce covoiturage ?</p>
+
+    <form method="post" action="{{ path('app_covoiturage_delete', { id: covoiturage.id }) }}">
+        <button type="submit">Confirmer la suppression</button>
+    </form>
+
+    <a href="{{ path('app_covoiturage') }}">Retour à la liste des covoiturages</a>
+{% endblock %}

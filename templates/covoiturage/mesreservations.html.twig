@@ -1,0 +1,133 @@
+{% extends 'base.html.twig' %}
+{% block title %}Mes réservations{% endblock %}
+
+{% block body %}
+
+{# --- Affichage des messages flash --- #}
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+{% endfor %}
+<div class="container-fluid bg-light p-4 rounded shadow mt-4" style="max-width: 1200px;">
+
+    <a href="{{ path('app_covoiturage') }}" class="btn btn-secondary mb-4">← Retour au Covoiturage</a>
+
+    {# --- Section : Trajets conduits (Conducteur) --- #}
+    <section class="mb-5">
+        <h3 class="mb-3 text-primary">🚗 Mes trajets conduits</h3>
+
+        {% if trajetsConduits is empty %}
+            <div class="alert alert-info text-center">
+                Vous ne conduisez actuellement aucun trajet.
+            </div>
+        {% else %}
+            <div class="row g-3">
+                {% for covoiturage in trajetsConduits %}
+                    <div class="col fade-in">
+                        <div class="card shadow-sm h-100 border-0 hover-card">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title mb-2">{{ covoiturage.lieudepart }} → {{ covoiturage.lieuarrivee }}</h5>
+
+                                <ul class="list-unstyled flex-grow-1 mb-3">
+                                    <li><strong>Départ :</strong> {{ covoiturage.datedepart|date('d/m/Y H:i') }}</li>
+                                    <li><strong>Prix :</strong> {{ covoiturage.prixpersonne }} €</li>
+                                    <li><strong>Places restantes :</strong> {{ covoiturage.nbplace }}</li>
+                                    <li><strong>Passagers :</strong>
+                                        {% if covoiturage.passagers|length > 0 %}
+                                            <ul>
+                                                {% for p in covoiturage.passagers %}
+                                                    <li>{{ p.pseudo }}</li>
+                                                {% endfor %}
+                                            </ul>
+                                        {% else %}
+                                            Aucun passager réservé
+                                        {% endif %}
+                                    </li>
+                                </ul>
+
+                                <div class="mt-auto">
+                                   {% if covoiturage.user == app.user %}
+    {% if covoiturage.statut == 'Disponible' %}
+        <a href="{{ path('app_covoiturage_demarrer_course', {'id': covoiturage.id}) }}"
+           class="btn btn-success btn-sm me-2">
+           ▶️ Démarrer
+        </a>
+    {% elseif covoiturage.statut == 'En cours' %}
+        <a href="{{ path('app_covoiturage_arreter_course', {'id': covoiturage.id}) }}"
+           class="btn btn-warning btn-sm me-2">
+           ⏹️ Terminer
+        </a>
+    {% endif %}
+{% endif %}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+
+    {# --- Section : Trajets réservés (Passager) --- #}
+    <section>
+        <h3 class="mb-3 text-primary">🧍‍♂️ Mes réservations</h3>
+
+        {% if trajetsReserves is empty %}
+            <div class="alert alert-info text-center">
+                Vous n’avez aucune réservation.
+            </div>
+        {% else %}
+            <div class="row g-3">
+                {% for covoiturage in trajetsReserves %}
+                    <div class="col fade-in">
+                        <div class="card shadow-sm h-100 border-0 hover-card">
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title mb-2">{{ covoiturage.lieudepart }} → {{ covoiturage.lieuarrivee }}</h5>
+
+                                <ul class="list-unstyled flex-grow-1 mb-3">
+                                    <li><strong>Départ :</strong> {{ covoiturage.datedepart|date('d/m/Y H:i') }}</li>
+                                    <li><strong>Prix :</strong> {{ covoiturage.prixpersonne }} €</li>
+                                    <li><strong>Conducteur :</strong> {{ covoiturage.user.pseudo }}</li>
+                                    <li><strong>Statut :</strong> {{ covoiturage.statut }}</li>
+                                    <div class="mt-auto">
+    {# Bouton annuler uniquement pour le passager #}
+    {% if covoiturage.passagers|filter(p => p.id == app.user.id)|length > 0 %}
+        <a href="{{ path('app_covoiturage_annuler', {'id': covoiturage.id}) }}"
+           class="btn btn-danger btn-sm w-100 mt-2">
+           ❌ Annuler ma réservation
+        </a>
+    {% endif %}
+
+    {# Bouton pour noter le conducteur si le trajet est terminé #}
+                                {% if covoiturage.statut == 'Terminé' %}
+                                    <a href="{{ path('app_avis_create', {'id': covoiturage.id}) }}"
+                                       class="btn btn-primary btn-sm w-100 mt-2">
+                                       ⭐ Noter le conducteur
+                                    </a>
+                                {% endif %}
+</div>
+
+                                </ul>  
+                       
+                    
+
+
+                                {# Aucun bouton Démarrer pour les passagers #}
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </section>
+  
+
+
+</div>
+
+{% endblock %}

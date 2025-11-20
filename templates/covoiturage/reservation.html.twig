@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reservation Covoiturage{% endblock %}
+
+{% block body %}
+
+{# addflash#}
+
+{% for label, messages in app.flashes %}
+    {% for message in messages %}
+        <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endfor %}
+
+    <div class="container mt-5">
+        <h1>Réservation de Covoiturage</h1>
+
+        <form method="post" action="{{ path('app_covoiturage_reserver', {'id': covoiturage.id}) }}">
+            <div class="mb-3">
+                <label for="nbplace" class="form-label">Nombre de places à réserver</label>
+                <input type="number" class="form-control" id="nbplace" name="nbplace" min="1" max="{{ covoiturage.nbplace }}" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Réserver</button>
+        </form>
+
+
+{% endblock %}

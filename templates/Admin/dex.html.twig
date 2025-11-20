@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des rôles des utilisateurs{% endblock %}
+
+{% block body %}
+
+<h1>Gestion des rôles des utilisateurs</h1>
+<p>Cette page vous permet de gérer les rôles des utilisateurs.</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nom d'utilisateur</th>
+            <th>Rôle</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.username }}</td>
+                <td>
+                    <form method="post" action="{{ path('app_admin_user_roles', {'id': user.id}) }}">
+                        <select name="role" onchange="this.form.submit()">
+                            <option value="ROLE_USER" {% if 'ROLE_USER' in user.roles %}selected{% endif %}>Utilisateur</option>
+                            <option value="ROLE_ADMIN" {% if 'ROLE_ADMIN' in user.roles %}selected{% endif %}>Administrateur</option>
+                        </select>
+                    </form>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% if users is empty %}
+    <p>Aucun utilisateur trouvé.</p>
+{% endif %}
+
+{% if 'ROLE_ADMIN' in app.user.roles %}
+    <a href="{{ path('app_admin_user_create') }}" class="btn btn-primary">Créer un nouvel utilisateur</a>
+    <a href="{{ path('admin') }}" class="btn btn-secondary">Retour au tableau de bord</a>
+{% endif %}
+
+{% endblock %}

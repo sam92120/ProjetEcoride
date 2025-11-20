@@ -1,0 +1,97 @@
+{# templates/mon_compte/covoiturage.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Covoiturage{% endblock %}
+
+{% block body %}
+<div class="container mt-5 mb-5">
+    <h1 class="text-center mb-4">Covoiturage</h1>
+    <p class="text-center">Voyager ensemble, économiser et partager des moments conviviaux!</p>
+
+    {% if covoiturages is empty %}
+        <div class="alert alert-info text-center ">Aucun covoiturage trouvé.</div>
+    {% else %}
+        <div class="row">
+            {% for covoiturage in covoiturages %}
+                <div class="col-12 mb-3">
+                    <div class="card shadow-sm rounded-3 border-4 h-100">
+                        <div class="card-body">
+                           
+                            
+                
+                            <p class="card-text">
+                                
+                                    <img src="{{ asset('uploads/photos/' ~ covoiturage.user.photo) }}" alt="photo de {{ covoiturage.user.pseudo }}" width="60" height="60" class="rounded-circle">
+                               
+                               
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Conducteur :</strong> {{ covoiturage.user.nom ?? 'non renseigné' }} {{ covoiturage.user.prenom ?? 'non renseigné' }}
+                            </p>
+                        
+                            <p class="card-text">
+                                {% if covoiturage.nbplace > 0  %}
+                                        <p class="bi bi-person"></p> {{ covoiturage.nbplace }} 
+                                        place{% if covoiturage.nbplace > 1 %}{% endif %} 
+                                        restante{% if covoiturage.nbplace > 1 %}{% endif %}
+                                {% else %}
+                                <span class="text-danger fw-bold"><i class="bi bi-x-circle"></i> Complet</span>
+                                {% endif %}
+                                <br>
+                            </p>
+
+
+                            <p class="card-title">
+                                <strong>{{ covoiturage.lieudepart }} → {{ covoiturage.lieuarrivee }}</strong>
+                            </p>
+
+                            <p class="card-subtitle mb-2 text-muted">
+                                Départ le <strong>{{ covoiturage.dateDepart|date('d/m/Y') }}</strong>
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Prix par personne :</strong> {{ covoiturage.prixpersonne }} €
+                            </p>
+
+                            <p class="card-text">
+                                <strong>Voiture :</strong> {{ covoiturage.voiture.marque ?? 'non renseigné' }} {{ covoiturage.voiture.modele ?? 'non renseigné' }}
+                            </p>
+
+                            <p class="card-text">
+                                {% if covoiturage.voiture.energie in ['electrique', 'hybride'] %}
+                                    Voyage écologique 🌱🌱 
+                                {% elseif covoiturage.voiture.energie in ['essence', 'diesel'] %}
+                                    Énergie non écologique 🚗
+                                {% else %}
+                                    Énergie autre / non renseignée
+                                {% endif %}
+
+                            </p>    
+
+                            
+
+
+                            <a href="{{ path('app_covoiturage_information', {'id': covoiturage.id}) }}" class="btn btn-primary mt-3 w-100">Voir les détails</a>   
+
+                        
+
+
+                            {% if covoiturage.nbplace >= 3 and app.user %}
+                                <form action="{{ path('app_covoiturage_reserver', {'id': covoiturage.id}) }}" method="post" class="d-inline">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('covoiturage_reserver' ~ covoiturage.id) }}">
+                                    <button class="btn btn-primary btn-sm">Réserver</button>
+                                </form>
+                                
+                                <a href="{{ path('app_compte') }}" class="btn btn-secondary btn-sm">compte</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

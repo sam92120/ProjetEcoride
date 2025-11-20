@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}configuration{% endblock %}
+
+{% block body %}
+  <div class="container-x">
+    <div class="row justify-content-center mt-5 mb-5 text-center text-white">
+      <div class="col-md-12">
+        <h1>Configuration</h1>
+        {form_start(form)}
+        {{ form_widget(form) }}
+        <button class="btn btn-primary">Save</button>
+        {form_end(form)}
+      </div>
+    </div>
+  </div>
+   
+    {#<a href="{{ path('app_configuration_edit') }}" class="btn btn-primary">Edit Configuration</a>#}
+    {#<a href="{{ path('app_configuration_new') }}" class="btn btn-success">Create New Configuration</a>#}
+    {#<a href="{{ path('app_configuration_list') }}" class="btn btn-info">List Configurations</a>#}
+    {#<a href="{{ path('app_configuration_delete') }}" class="btn btn-danger">Delete Configuration</a>#}
+
+        </div
+{% endblock %}

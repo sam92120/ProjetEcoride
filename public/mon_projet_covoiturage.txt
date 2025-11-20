@@ -1,0 +1,55 @@
+/mon_projet_covoiturage
+│
+├── /admin                  # Espace administrateur
+│   ├── index.php           # Page d'accueil de l'admin
+│   ├── login.php           # Connexion administrateur
+│   ├── dashboard.php       # Tableau de bord de l'admin
+│   ├── gestion_trajets.php # Gestion des trajets
+│   ├── gestion_utilisateurs.php # Gestion des utilisateurs
+│   └── /assets             # Ressources de l'admin (CSS, JS, Images)
+│
+├── /employes               # Espace employé
+│   ├── index.php           # Page d'accueil de l'employé
+│   ├── login.php           # Connexion employé
+│   ├── gestion_trajets.php # Gestion des trajets
+│   ├── notifications.php   # Notifications
+│   └── /assets             # Ressources de l'employé (CSS, JS, Images)
+│
+├── /utilisateurs           # Espace utilisateur (conducteur, voyageur)
+│   ├── index.php           # Page d'accueil utilisateur
+│   ├── login.php           # Connexion utilisateur
+│   ├── mon_compte.php      # Mon compte
+│   ├── reserver_trajet.php # Réservation de trajet
+│   ├── mes_trajets.php     # Liste des trajets réservés
+│   ├── mes_evaluations.php # Mes évaluations
+│   └── /assets             # Ressources utilisateur (CSS, JS, Images)
+│
+├── /visiteurs              # Espace visiteur
+│   ├── index.php           # Page d'accueil visiteur (formulaire de recherche de trajet)
+│   ├── /assets             # Ressources visiteur (CSS, JS, Images)
+│
+├── /config                 # Configuration de l'application
+│   ├── database.php        # Connexion à la base de données
+│   ├── config.php          # Paramètres de configuration généraux
+│   ├── routes.php          # Définition des routes de l'application
+│   └── .env                # Fichier d'environnement pour les variables sensibles (API keys, etc.)
+│
+├── /public                 # Dossier accessible publiquement
+│   ├── /css                # Fichiers CSS
+│   ├── /js                 # Fichiers JavaScript
+│   └── /images             # Images publiques
+│
+├── /templates              # Templates (HTML/PHP)
+│   ├── header.php          # Entête commune pour toutes les pages
+│   ├── footer.php          # Pied de page commun pour toutes les pages
+│   └── /partials           # Partiels spécifiques à chaque espace (par exemple, formulaire de connexion, etc.)
+│
+├── /logs                   # Logs du projet (si nécessaire)
+│   └── log.txt             # Logs d'erreur ou de traitement
+│
+├── /tests                  # Tests unitaires et d'intégration
+│   ├── test_login.php      # Test de connexion
+│   ├── test_trajets.php    # Test de gestion des trajets
+│   └── test_utilisateurs.php # Test des utilisateurs
+│
+└── index.php               # Page d'accueil du projet (dépend du rôle)

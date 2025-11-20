@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Donner un avis{% endblock %}
+
+{% block body %}
+<div class="container mt-5 border p-4 rounded shadow" style="background-color:primary;">
+    <h1 class="text-center mb-4">Laissez votre avis</h1>
+
+     <div class="row justify-content-center">
+        <div class="col-md-6">
+            {{ form_start(form) }}
+            {{ form_row(form.commentaire, {
+    label: 'Commentaire', 
+    label_attr: {'style': 'color: white;'},
+    attr: {'placeholder': 'Entrez votre commentaire'}
+}) }}
+            {{ form_row(form.note, {label: 'Note', label_attr: {'style': 'color: white; ', 'placeholder': 'Entrez votre note'}}) }}
+            {{ form_row(form.auteur, {label: 'Auteur', label_attr: {'style': 'color: white; ', 'placeholder': 'Entrez votre nom'}}) }}
+            {{ form_row(form.statut, {label: 'Statut', label_attr: {'style': 'color: white; ', 'placeholder': 'Entrez le statut'}}) }}
+            <button type="submit" class="btn btn-success">Envoyer</button>
+            {{ form_end(form) }}
+        
+        </div>
+    </div>²
+</div>
+{% endblock %}
+{# templates/base.html.twig #}
+

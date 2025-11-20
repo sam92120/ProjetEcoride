@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un covoiturage{% endblock %}
+
+{% block body %}
+
+  {## ajouter un addflash #}
+    {% for message in app.flashes('danger') %}
+        <div class="alert alert-danger text-center fw-bold">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+<div class="container-fluid d-flex justify-content-center align-items-center p-2 mb-5 bg-light rounded shadow-sm">
+
+    <div class="row justify-content-center align-items-center mb-2">
+
+        <div class="col-md-12 bg-success p-4 rounded shadow-fluid opacity-90">
+
+         
+            <h5 class="text-center btn btn-success">
+                Veuillez remplir le formulaire ci-dessous pour créer un nouveau covoiturage.
+            </h5>
+
+            {{ form_start(form) }}
+
+                {{ form_row(form.datedepart) }}
+                {{ form_row(form.heuredepart) }}
+                {{ form_row(form.lieudepart) }}
+                {{ form_row(form.datearrive) }}
+                {{ form_row(form.heurearrive) }}
+                {{ form_row(form.lieuarrivee) }}
+                {{ form_row(form.nbplace) }}
+                {{ form_row(form.prixpersonne) }}
+               {{ form_row(form.voiture, { attr: { class: 'form-select mb-3' } }) }}
+               {{ form_row(form.user, { attr: { class: 'form-control mb-3' } }) }}
+
+                <!-- Accepte Fumeur -->
+                <div class="mb-3 mt-4">
+                    {{ form_label(form.AccepteFumeur) }}
+                    {% for choice in form.AccepteFumeur %}
+                        <div class="form-check">
+                            {{ form_widget(choice, { attr: { class: 'form-check-input' } }) }}
+                            {{ form_label(choice, null, { label_attr: { class: 'form-check-label ms-2' } }) }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Accepte Animaux -->
+                <div class="mb-3">
+                    {{ form_label(form.AccepteAnimaux) }}
+                    {% for choice in form.AccepteAnimaux %}
+                        <div class="form-check">
+                            {{ form_widget(choice, { attr: { class: 'form-check-input' } }) }}
+                            {{ form_label(choice, null, { label_attr: { class: 'form-check-label ms-2' } }) }}
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="d-flex justify-content-center mt-4">
+                    <button type="submit" class="btn btn-primary form-control">
+                        Créer le covoiturage
+                    </button>
+                </div>
+
+            {{ form_end(form) }}
+
+            <a href="{{ path('app_covoiturage') }}" class="btn btn-success mt-3 form-control">
+                Retour à la liste des covoiturages
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

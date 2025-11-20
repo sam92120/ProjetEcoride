@@ -1,0 +1,32 @@
+<main>
+<div class="container-fluid ">
+<div class="position-absolute">
+
+</div>
+
+
+	<main>	
+	<divclass="container-fluid  ">
+     
+      <div class="  text-center content-middle form-container position-absolute position-absolute top-50 start-50 translate-middle">
+            <form>
+                <div class="row mb-3 ">
+                    <div class="col p-4">
+                        <label for="depart" class="form-label"></label>
+                        <input type="text" class="form-control" id="depart" placeholder=" 🔍Départ">
+                    </div>
+                    <div class="col p-4">
+                        <label for="arrive" class="form-label"></label>
+                        <input type="text" class="form-control" id="arrive" placeholder=" 🔍Arrivé">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary text-center">recherche</button>
+            </form>
+        </div>
+     </div>  
+
+	</div>
+
+
+</div>
+</main>
