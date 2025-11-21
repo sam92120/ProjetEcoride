@@ -1,0 +1,8 @@
+https:
+  type: upstream
+  upstream: "app:http"
+  locations:
+    "/":
+      proxy:
+        upstream: "app:http"
+      allow: true

@@ -1,0 +1,25 @@
+application:
+  name: app
+  type: php:8.2
+  disk: 512
+
+  dependencies:
+    php:
+      ext-ctype: "*"
+      ext-iconv: "*"
+      ext-pdo: "*"
+      ext-mbstring: "*"
+      ext-curl: "*"
+
+  hooks:
+    build: |
+      composer install --no-dev --optimize-autoloader
+      php bin/console cache:clear --env=prod
+
+  web:
+    locations:
+      "/":
+        root: "public"
+        index:
+          - "index.php"
+        allow: true
