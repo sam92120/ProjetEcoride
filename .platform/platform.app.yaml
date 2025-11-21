@@ -1,4 +1,4 @@
-name: app
+name: projetecoride
 type: php:8.2  # ou une autre version compatible avec votre projet
 
 dependencies:
