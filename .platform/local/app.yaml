@@ -1,0 +1,30 @@
+name: app
+type: "php:8.2"
+disk: 512
+
+build:
+    flavor: "composer"
+
+web:
+    locations:
+        "/":
+            root: "public"
+            index:
+                - "index.php"
+            allow: true
+
+hooks:
+    build: |
+        composer install --no-dev --optimize-autoloader
+        php bin/console cache:clear --env=prod
+
+dependencies:
+    php:
+        ext-ctype: "*"
+        ext-iconv: "*"
+        ext-pdo: "*"
+        ext-mbstring: "*"
+        ext-curl: "*"
+
+commands:
+    start: "php-fpm8.2 -F"
