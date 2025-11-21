@@ -1,0 +1,18 @@
+name: app
+type: php:8.2  # ou une autre version compatible avec votre projet
+
+dependencies:
+    php:
+        symfony/*: '*'
+
+web:
+    locations:
+        "/":
+            root: "public"  # Dossier racine de Symfony (anciennement "web")
+            passthru: "/index.php"  # Point d'entrée de Symfony
+
+disk: 1024  # Taille du stockage (MB)
+
+mounts:
+    "var": "shared:files/var"  # Pour les fichiers uploadés, cache, etc.
+    "public/media": "shared:files/media"  # Si vous utilisez un dossier media
