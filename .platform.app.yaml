@@ -1,0 +1,32 @@
+name: app
+type: "php:8.2"
+disk: 512
+
+# Dépendances PHP
+dependencies:
+    php:
+        symfony/symfony: "*"
+        ext-ctype: "*"
+        ext-iconv: "*"
+        ext-pdo: "*"
+        ext-mbstring: "*"
+        ext-curl: "*"
+
+hooks:
+    build: |
+        composer install --no-dev --optimize-autoloader
+        php bin/console cache:clear --env=prod
+
+web:
+    locations:
+        "/":
+            root: "public"
+            index:
+                - "index.php"
+            allow: true
+        "/.well-known/acme-challenge/":
+            root: "public/.well-known/acme-challenge"
+            allow: true
+    commands:
+        start: "php-fpm8.2 -F"
+        
