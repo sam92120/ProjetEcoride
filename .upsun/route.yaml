@@ -1,0 +1,15 @@
+applications:
+  - name: app
+    type: web
+    image: node:18
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - name: http
+        containerPort: 3000
+    env:
+      - name: NODE_ENV
+        value: production
+    command: ["npm", "start"]
+     
